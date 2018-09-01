@@ -18,6 +18,11 @@ class ButtonLayout extends Component {
                 value: ``,
             },
 
+            // Every 
+            InputField: {
+                expression: ['2', '+', '234', '43' ]
+            },
+
             // All the input buttons
             buttonList: [
                 { name: `add`, value: `+` },
@@ -66,7 +71,7 @@ class ButtonLayout extends Component {
             <div className="ButtonLayoutContainer row">
 
                 {/* Input field will display based on user input */}
-                <InputField />
+                <InputField expressionData={this.state.InputField} />
 
                 {/* Buttons */}
                 {this.state.buttonList.map((button, i) => {
