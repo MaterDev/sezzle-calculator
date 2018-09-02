@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import ButtonLayout from '../ButtonLayout/ButtonLayout';
 
-
 class App extends Component {
   render() {
     return (
@@ -17,7 +16,6 @@ class App extends Component {
         <div className="calculatorBody">
           <ButtonLayout />
         </div>
-
       </div >
     );
   }

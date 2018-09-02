@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Buttons from '../Buttons/Buttons';
 import './ButtonLayout.css'
 import InputField from '../InputField/InputField';
+import Calculate from '../../Logic/Calculate/Calculate';
+
+
 
 // This component will display the buttons on the dom
 
@@ -18,10 +21,13 @@ class ButtonLayout extends Component {
                 value: ``,
             },
 
-            // Every 
+            // Every input is transformed into an object tthat will be pushed to history
             InputField: {
-                expression: ['2', '+', '234', '43' ]
+                expression: [],
+                answer: ``,
             },
+
+            allHistory: ['taco'],
 
             // All the input buttons
             buttonList: [
@@ -57,27 +63,68 @@ class ButtonLayout extends Component {
     // Input that will be concatenated
     inputNumberHandler = (input) => {
         console.log('inputNumberHandler working', input);
+        this.setState({
+            InputField: {
+                expression: [...this.state.InputField.expression, input]
+            }
+        })
     }
 
     // Input that will have another method
     inputElseHandler = (input) => {
-        console.log('inputElseHandler Working', input)
+
+        if (input === '=') {
+            let answer = Calculate(this.state.InputField.expression)
+
+            let newHistory = {
+                expression: this.state.InputField.expression,
+                theAnswer: answer,
+            }
+
+            console.log('will save', newHistory);
+
+            this.setState({
+                allHistory: [this.state.allHistory, newHistory],
+            })
+
+            console.log('history log working', this.state.allHistory);
+        }
+
     }
 
-  
+    historyDisplay = () => {
+        this.state.allHistory.map((entry, i) {
+            return ( <tr></tr>)
+        })
+    }
+
+
+
 
     render() {
         return (
-            <div className="ButtonLayoutContainer row">
+            <div className="row">
+                <div className="ButtonLayoutContainer row">
+                    {/* Input field will display based on user input */}
+                    <InputField expressionData={this.state.InputField} />
 
-                {/* Input field will display based on user input */}
-                <InputField expressionData={this.state.InputField} />
+                    {/* Buttons */}
+                    {this.state.buttonList.map((button, i) => {
+                        // i starts at 0
+                        return <Buttons key={i} buttonData={button} inputNumber={this.inputNumberHandler} inputElse={this.inputElseHandler} />
+                    })}
+                </div>
 
-                {/* Buttons */}
-                {this.state.buttonList.map((button, i) => {
-                    // i starts at 0
-                    return <Buttons key={i} buttonData={button} inputNumber={this.inputNumberHandler}  inputElse={this.inputElseHandler} />
-                })}
+                <div className="ButtonLayoutContainer row">
+                    {<table>
+                        <thead>
+                            
+                        </thead>
+                    </table>}
+
+                </div>
+
+
 
             </div>
         );
