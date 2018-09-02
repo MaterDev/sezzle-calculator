@@ -3,6 +3,7 @@ import Buttons from '../Buttons/Buttons';
 import './ButtonLayout.css'
 import InputField from '../InputField/InputField';
 import Calculate from '../../Logic/Calculate/Calculate';
+import HistoryInput from '../HistoryInput/HistoryInput'
 
 
 
@@ -24,10 +25,10 @@ class ButtonLayout extends Component {
             // Every input is transformed into an object tthat will be pushed to history
             InputField: {
                 expression: [],
-                answer: ``,
+                theAnswer: ``,
             },
 
-            allHistory: ['taco'],
+            allHistory: [{ expression: [8, 8, 8], theAnswer: 10 }],
 
             // All the input buttons
             buttonList: [
@@ -60,6 +61,18 @@ class ButtonLayout extends Component {
 
     }
 
+    // If the length of the history is greater then 10, it will clip off the extra items in the array
+    historyClip = () => {
+        let clippedHistory = this.state.allHistory
+        if(clippedHistory.length > 10) {
+            clippedHistory.length = 10;
+            console.log('clip successful');
+            this.setState({
+                allHistory: [clippedHistory],
+            })
+        }
+    }
+
     // Input that will be concatenated
     inputNumberHandler = (input) => {
         console.log('inputNumberHandler working', input);
@@ -74,59 +87,54 @@ class ButtonLayout extends Component {
     inputElseHandler = (input) => {
 
         if (input === '=') {
+            this.historyClip();
             let answer = Calculate(this.state.InputField.expression)
-
             let newHistory = {
                 expression: this.state.InputField.expression,
                 theAnswer: answer,
             }
-
-            console.log('will save', newHistory);
-
             this.setState({
-                allHistory: [this.state.allHistory, newHistory],
+                allHistory: [newHistory, ...this.state.allHistory],
             })
-
-            console.log('history log working', this.state.allHistory);
+        } else if(input === '') {
+            console.log('clear the screen');
+            
         }
-
     }
-
-    historyDisplay = () => {
-        this.state.allHistory.map((entry, i) {
-            return ( <tr></tr>)
-        })
-    }
-
-
-
 
     render() {
         return (
             <div className="row">
-                <div className="ButtonLayoutContainer row">
+
+                <div className="col">
                     {/* Input field will display based on user input */}
-                    <InputField expressionData={this.state.InputField} />
+                    <InputField className="row" expressionData={this.state.InputField} />
 
-                    {/* Buttons */}
-                    {this.state.buttonList.map((button, i) => {
-                        // i starts at 0
-                        return <Buttons key={i} buttonData={button} inputNumber={this.inputNumberHandler} inputElse={this.inputElseHandler} />
-                    })}
-                </div>
-
-                <div className="ButtonLayoutContainer row">
-                    {<table>
-                        <thead>
-                            
-                        </thead>
-                    </table>}
+                    <div className="ButtonLayoutContainer  row">
+                        {/* Buttons */}
+                        {this.state.buttonList.map((button, i) => {
+                            // i starts at 0
+                            return <Buttons key={i} buttonData={button} inputNumber={this.inputNumberHandler} inputElse={this.inputElseHandler} />
+                        })}
+                    </div>
 
                 </div>
 
 
 
-            </div>
+                <div className="col pl-3 pr-3 bg-dark text-muted">
+                    <div className="">
+                    <h3>History:</h3>
+                            {this.state.allHistory.map((entry, i) => {
+                                return (<HistoryInput key={i} data={entry} />)
+                            })}
+                    </div>
+
+                </div>
+
+
+
+            </div >
         );
     }
 }
