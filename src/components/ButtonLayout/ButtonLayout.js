@@ -27,7 +27,7 @@ class ButtonLayout extends Component {
                 expression: [],
                 theAnswer: ``,
             },
-
+            // stores history in a local variable
             allHistory: [],
 
             // All the input buttons
@@ -61,11 +61,13 @@ class ButtonLayout extends Component {
 
     }
 
+    //  loads initial history data
     componentDidMount() {
         this.getHistory();
 
     }
 
+    // sends request to mongo
     getHistory = () => {
         axios({
             method: 'get',
@@ -79,6 +81,7 @@ class ButtonLayout extends Component {
         });
     }
 
+    //  deletes all history
     resetAll = () => {
         axios({
             method: 'DELETE',
@@ -129,7 +132,7 @@ class ButtonLayout extends Component {
                 }
             })
         } else if (input === 'R') {
-            this.resetAll();    
+            this.resetAll();
         }
     }
 
@@ -139,9 +142,9 @@ class ButtonLayout extends Component {
 
                 <span className="mr-4">
                     {/* Input field will display based on user input */}
-                    
+
                     <div className="ButtonLayoutContainer shadow-lg ml-2 mr-2">
-                    <InputField expressionData={this.state.InputField} />
+                        <InputField expressionData={this.state.InputField} />
                     </div>
 
                     <div className="ButtonLayoutContainer shadow-lg ml-2 mr-2 p-1 border rounded border-primary row d-flex justify-content-center">
@@ -158,7 +161,7 @@ class ButtonLayout extends Component {
 
                 <span className="pl-3 pr-3 card border-primary bg-light rounded historyBox">
                     <div className="">
-                        <HistoryInput history={this.state.allHistory} getHistory={this.getHistory()}/>
+                        <HistoryInput history={this.state.allHistory} getHistory={this.getHistory()} />
                     </div>
 
                 </span>

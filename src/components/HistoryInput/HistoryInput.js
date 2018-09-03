@@ -14,6 +14,7 @@ class Historyinput extends Component {
         }
     }
 
+    // Will refresh the client on an interval to get updates.
     componentWillMount() {
         const id = setInterval(this.fetchData, 5000);
         this.setState({intervalId: id});
