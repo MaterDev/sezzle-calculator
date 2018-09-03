@@ -33,9 +33,11 @@ This is a full-stack calculator.
 	* Clear should erase the input field
 5. [x] Add functionality to Reset button
 	* Reset should delete all history
-6. [x] Create validator to prevent faulty entries from appearing in history 
-7. [x] Add functionality for live history updates
-	8. used an interval timer to refresh component
+6. [x] Create server-side functionality for buttons, with axios requests
+7. [x] Create validator to prevent faulty entries from appearing in history 
+8. [x] Add functionality for live history updates
+	* Use an interval timer to refresh component
+
 
 ## Screenshot
 ![App Screenshot](./screenshot.png)
