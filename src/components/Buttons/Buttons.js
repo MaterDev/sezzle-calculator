@@ -3,10 +3,7 @@ import './Buttons.css';
 
 
 // This component will display the buttons on the dom
-
 class Buttons extends Component {
-
-
 
     // Sends value to ButtonLayout for concatenation
     isNum = () => {
@@ -18,6 +15,7 @@ class Buttons extends Component {
     }
 
     // Handles the styling for the buttons
+    // Sorts and adds classes based on type of input
     buttonClasses = () => {
         if (this.props.buttonData.value === `+` ||
             this.props.buttonData.value === `-` ||
@@ -40,7 +38,7 @@ class Buttons extends Component {
     }
 
     render() {
-        // Numbers will be concatenated together to create an expression
+        // Numbers will be printed to the dom as individual characters and styled to form an expression
         if (!(isNaN(this.props.buttonData.value))) {
             return (
                 <div>

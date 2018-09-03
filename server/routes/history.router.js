@@ -3,9 +3,9 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-console.log('history working');
+// console.log('history working');
 
-
+// set up for schema
 const HistorySchema = new Schema({
     expression: {
         type: Array
@@ -15,6 +15,7 @@ const HistorySchema = new Schema({
     }
 })
 
+// mongoose model for storing items
 const HistoryItem = mongoose.model('HistoryItem', HistorySchema)
 
 
@@ -27,10 +28,10 @@ router.post('/', function (req, res) {
 
     // Saves data to the server
     HistoryAdd.save().then(() => {
-        console.log('History Added', HistoryAdd);
+        // console.log('History Added', HistoryAdd);
         res.sendStatus(200);
     }).catch((error) => {
-        console.log('Error in Post', error);
+        // console.log('Error in Post', error);
         res.sendStatus(500);
     })
 
@@ -39,8 +40,8 @@ router.post('/', function (req, res) {
 
 // GET Route
 router.get('/', function (req, res) {
-    console.log('get working');
-
+    // console.log('get working');
+    // Only returns the last 10 entries in the db
     HistoryItem.find().limit(10).sort({
         $natural: -1
     }).then((foundItems) => {
@@ -48,21 +49,21 @@ router.get('/', function (req, res) {
         // Sends all items
         res.send(foundItems);
     }).catch((error) => {
-        console.log('error in GET', error);
+        // console.log('error in GET', error);
         res.sendStatus('500');
     })
 }); // END GET Route
 
 // GET Route
 router.delete('/', function (req, res) {
-    console.log('Delete working');
-
+    // console.log('Delete working');
+    // clears entire db to reset the entire calculator
     HistoryItem.remove({}).then(() => {
-        console.log('reset successful');
+        // console.log('reset successful');
         // Sends all items
         res.sendStatus('200');
     }).catch((error) => {
-        console.log('error in GET', error);
+        // console.log('error in GET', error);
         res.sendStatus('500');
     })
 }); // END GET Route

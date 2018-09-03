@@ -14,7 +14,7 @@ class App extends Component {
           <h3>by. Jakeh Clark</h3>
         </header>
 
-        {/* User Interface */}
+        {/* User Interface will display here */}
         <div className="calculatorBody">
           <ButtonLayout onChange=""/>
         </div>

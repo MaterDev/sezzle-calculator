@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// Sends request to history.router.js
 export function GetRequest(){
 
     axios({

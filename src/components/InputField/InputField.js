@@ -13,11 +13,12 @@ class InputField extends Component {
                     
                     // Formatting for input display, if the entry is a number it will not have spaces, if it is then it will have spaces.
                     let decimal = '.';
-                    // To evaluate the decimal the conditional statement uses the unicode value for comparison
+                    // decimal sign will be rendered closer to numbers.
                     if (entry === decimal) {
                         return <span key={i} className="inputDisplay">{entry}</span>
                     }
                     else if (isNaN(entry)) {
+                        // operators will be rendered with spaces around them.
                         return <span key={i} className="inputDisplay pl-1 pr-1"> {entry}  </span>
                     } else {
                         return <span key={i} className="inputDisplay">{entry}</span>

@@ -61,7 +61,7 @@ class ButtonLayout extends Component {
 
     }
 
-    //  loads initial history data
+    //  loads initial history data when the app starts
     componentDidMount() {
         this.getHistory();
 
@@ -97,7 +97,7 @@ class ButtonLayout extends Component {
     }
 
 
-    // Input that will be concatenated
+    // New input added to an array, which is displayed on DOM
     inputNumberHandler = (input) => {
         console.log('inputNumberHandler working', input);
         this.setState({
@@ -121,7 +121,7 @@ class ButtonLayout extends Component {
                     theAnswer: ``,
                 }
             })
-
+            // Refresshes DOM by making another GET request
             this.getHistory();
         } else if (input === 'C') {
             // Will clear the input field
@@ -132,6 +132,7 @@ class ButtonLayout extends Component {
                 }
             })
         } else if (input === 'R') {
+            // Resets calculator by making a DELETE request
             this.resetAll();
         }
     }
@@ -148,9 +149,8 @@ class ButtonLayout extends Component {
                     </div>
 
                     <div className="ButtonLayoutContainer shadow-lg ml-2 mr-2 p-1 border rounded border-primary row d-flex justify-content-center">
-                        {/* Buttons */}
+                        {/* Buttons created based on array of objects */}
                         {this.state.buttonList.map((button, i) => {
-                            // i starts at 0
                             return <Buttons key={i} buttonData={button} inputNumber={this.inputNumberHandler} inputElse={this.inputElseHandler} />
                         })}
                     </div>
@@ -161,6 +161,7 @@ class ButtonLayout extends Component {
 
                 <span className="pl-3 pr-3 card border-primary bg-light rounded historyBox">
                     <div className="">
+                    {/* This will display the entire history of calculations */}
                         <HistoryInput history={this.state.allHistory} getHistory={this.getHistory()} />
                     </div>
 

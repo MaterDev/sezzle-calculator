@@ -37,6 +37,4 @@ let Calculate = (input) => {
     }
 }
 
-
-
 export default Calculate

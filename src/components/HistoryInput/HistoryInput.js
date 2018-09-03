@@ -8,7 +8,8 @@ class Historyinput extends Component {
 
     constructor() {
         super();
-
+        // State changes attacked to an interval timer
+        // will keep the component refreshing for all users to get live updates
         this.state = {
             intervalId: null
         }
@@ -19,13 +20,14 @@ class Historyinput extends Component {
         const id = setInterval(this.fetchData, 5000);
         this.setState({intervalId: id});
     }
-
     componentWillUnmount() {
         clearInterval(this.state.intervalId);
     }
+
     render() {
         return (
             <div className="inputBoxDisplay">
+            {/* For each entry in the history, will create an individualized card to display on DOM */}
                 {this.props.history.map((entry, i) => {
                     return (
                         <div className="card bg-dark mb-2" key={i}>
