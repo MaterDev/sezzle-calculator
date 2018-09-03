@@ -7,7 +7,10 @@ import swal from 'sweetalert';
 
 let Calculate = (input) => {
 
-    if (input.length === 1) {
+console.log('attempting to save', input);
+
+
+    if (input.length < 2) {
         swal({
             title: "Not an expression!",
             icon: "error",
