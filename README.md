@@ -1,5 +1,17 @@
 # Sezzle Calculator
-September 1, 2018
+This is a full-stack calculator.
+
+## Built With
+* React
+* Node.js
+* Express
+* MongoDB
+* Mongoose
+* Math.js
+* Axios
+* SweetAlert
+* Nodemon
+
 
 ##Checkpoints:
 
@@ -21,4 +33,15 @@ September 1, 2018
 	* Clear should erase the input field
 5. [x] Add functionality to Reset button
 	* Reset should delete all history
-6. [ ] Create validator to prevent faulty entries from appearing in history 
+6. [x] Create validator to prevent faulty entries from appearing in history 
+7. [x] Add functionality for live history updates
+	8. used an interval timer to refresh component
+
+## Screenshot
+![App Screenshot](./screenshot.png)
+
+## Next Steps
+* Add socket.io for better live updates.
+
+## Author
+Jakeh Clark
