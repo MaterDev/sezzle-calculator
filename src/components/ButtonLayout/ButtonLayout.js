@@ -4,7 +4,6 @@ import './ButtonLayout.css';
 import InputField from '../InputField/InputField';
 import Calculate from '../../Logic/Calculate/Calculate';
 import HistoryInput from '../HistoryInput/HistoryInput';
-import PostRequest from '../../Logic/Database/POST';
 import GetRequest from '../../Logic/Database/GET'
 
 
@@ -92,14 +91,8 @@ class ButtonLayout extends Component {
 
         if (input === '=') {
 
-            let answer = Calculate(this.state.InputField.expression)
+            Calculate(this.state.InputField.expression);
 
-            let newHistory = {
-                expression: this.state.InputField.expression,
-                theAnswer: answer,
-            }
-
-            PostRequest(newHistory);
             GetRequest();
 
         } else if(input === 'C') {
