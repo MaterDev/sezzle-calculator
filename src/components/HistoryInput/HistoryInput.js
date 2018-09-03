@@ -17,12 +17,12 @@ class Historyinput extends Component {
                         let decimal = '.';
 
                         if (entry === decimal) {
-                            return <span>{entry}</span>
+                            return <span key={i}>{entry}</span>
                         }
                         else if (isNaN(entry)) {
-                            return <span> {entry} </span>
+                            return <span key={i}> {entry} </span>
                         } else {
-                            return <span>{entry}</span>
+                            return <span key={i}>{entry}</span>
                         }
 
                     })} = {this.props.data.theAnswer}

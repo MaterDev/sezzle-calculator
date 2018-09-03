@@ -28,7 +28,7 @@ class ButtonLayout extends Component {
                 theAnswer: ``,
             },
 
-            allHistory: [{ expression: [8, 8, 8], theAnswer: 10 }],
+            allHistory: [],
 
             // All the input buttons
             buttonList: [
