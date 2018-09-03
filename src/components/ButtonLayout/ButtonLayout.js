@@ -71,7 +71,6 @@ class ButtonLayout extends Component {
             method: 'get',
             url: '/history',
         }).then((response) => {
-            console.log('all history', response.data);
             this.setState({
                 allHistory: response.data,
             })
@@ -159,7 +158,7 @@ class ButtonLayout extends Component {
 
                 <span className="pl-3 pr-3 card border-primary bg-light rounded historyBox">
                     <div className="">
-                        <HistoryInput history={this.state.allHistory} />
+                        <HistoryInput history={this.state.allHistory} getHistory={this.getHistory()}/>
                     </div>
 
                 </span>

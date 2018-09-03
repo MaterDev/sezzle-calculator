@@ -45,8 +45,6 @@ router.get('/', function (req, res) {
         $natural: -1
     }).then((foundItems) => {
 
-        console.log(foundItems);
-
         // Sends all items
         res.send(foundItems);
     }).catch((error) => {

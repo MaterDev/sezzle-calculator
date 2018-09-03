@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import ButtonLayout from '../ButtonLayout/ButtonLayout';
-
 class App extends Component {
+
+
   render() {
+
     return (
       <div className="App container">
         {/* Header */}
@@ -14,7 +16,7 @@ class App extends Component {
 
         {/* User Interface */}
         <div className="calculatorBody">
-          <ButtonLayout />
+          <ButtonLayout onChange=""/>
         </div>
       </div >
     );

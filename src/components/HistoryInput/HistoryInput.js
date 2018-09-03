@@ -6,6 +6,22 @@ import './HistoryInput.css'
 
 class Historyinput extends Component {
 
+    constructor() {
+        super();
+
+        this.state = {
+            intervalId: null
+        }
+    }
+
+    componentWillMount() {
+        const id = setInterval(this.fetchData, 5000);
+        this.setState({intervalId: id});
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.state.intervalId);
+    }
     render() {
         return (
             <div className="inputBoxDisplay">
