@@ -24,18 +24,18 @@ class Buttons extends Component {
             this.props.buttonData.value === `*` ||
             this.props.buttonData.value === `/`
         ) {
-            return 'btn bg-success';
+            return 'btn bg-success border border-dark';
         } else if (this.props.buttonData.value === `R`) {
-            return 'btn bg-danger';
+            return 'btn bg-danger border border-dark';
         } else if (this.props.buttonData.value === `C`) {
-            return 'btn bg-warning';
+            return 'btn bg-warning border border-dark';
         } else if (this.props.buttonData.value === `=`) {
-            return 'btn bg-primary';
+            return 'btn bg-primary border border-dark';
         } else if (this.props.buttonData.value === `(` ||
                 this.props.buttonData.value === `)`) {
-            return 'btn bg-dark text-light rounded-circle';
+            return 'btn bg-info rounded-circle border border-dark';
         } else {
-            return 'btn bg-secondary';
+            return 'btn bg-secondary border border-dark';
         }
     }
 

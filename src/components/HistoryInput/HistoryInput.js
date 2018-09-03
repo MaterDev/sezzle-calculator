@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import './HistoryInput.css'
+// import HistoryPrint from '../HistoryPrint/HistoryPrint';
 
 // This component will display the rows for the history entries
 
@@ -6,32 +8,23 @@ class Historyinput extends Component {
 
     render() {
         return (
-            <div className="bg-dark text-light mt-1">
-                <div className="">
-                    {this.props.data.expression.map((entry, i) => {
-                        console.log();
+            <div className="inputBoxDisplay">
+                {this.props.history.map((entry, i) => {
+                    return (
+                        <div className="card bg-dark mb-2" key={i}>
 
-                        // Formatting for input display, if the entry is a number it will not have spaces, if it is then it will have spaces.
-
-                        // To evaluate the decimal the conditional statement uses the unicode value for comparison
-                        let decimal = '.';
-
-                        if (entry === decimal) {
-                            return <span key={i}>{entry}</span>
-                        }
-                        else if (isNaN(entry)) {
-                            return <span key={i}> {entry} </span>
-                        } else {
-                            return <span key={i}>{entry}</span>
-                        }
-
-                    })} = {this.props.data.theAnswer}
-
-                </div>
-
+                            <div className="card-body m-1">
+                                <div className="card-header m-0">
+                                    <span className="text-muted">{entry.expression.join(' ')}</span>
+                                </div>
+                                <div className="card-header">
+                                    <span className="text-muted"><h5>{entry.theAnswer}</h5></span>
+                                </div>
+                            </div>
+                        </div>)
+                })}
             </div>
         );
-
     }
 }
 

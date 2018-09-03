@@ -10,8 +10,6 @@ let PostRequest = (input) => {
         data: input,
     }).then((response) => {
         console.log(response);
-        const planets = response.data.results;
-        console.log(planets);
     }).catch(function (error) {
         console.log(error);
     });

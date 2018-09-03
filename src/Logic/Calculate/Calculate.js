@@ -2,14 +2,11 @@ import math from 'mathjs';
 import PostRequest from '../../Logic/Database/POST';
 import swal from 'sweetalert';
 
-
-// Using mathjs to evaluate the contents inside the input field
-
 let Calculate = (input) => {
 
-console.log('attempting to save', input);
-
-
+// Error handling will not let an empty array pass.
+// An input with only one number and no operator will not pass
+// An input that cannot be evaluated will not pass
     if (input.length < 2) {
         swal({
             title: "Not an expression!",
@@ -21,6 +18,7 @@ console.log('attempting to save', input);
         // If valid, then return the answer back to ButtonLayout
         // If invalid, send alert to client.
         try {
+            // Using mathjs to evaluate the contents inside the input field
             let Answer = math.eval(input.join(''));
 
             let newHistory = {
@@ -37,7 +35,6 @@ console.log('attempting to save', input);
 
         }
     }
-
 }
 
 

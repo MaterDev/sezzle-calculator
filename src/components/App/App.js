@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <div className="App container">
         {/* Header */}
-        <header className="App-header">
+        <header className="App-header text-secondary">
           <h1 className="App-title">Sezzle Calculator</h1>
           <h3>by. Jakeh Clark</h3>
         </header>

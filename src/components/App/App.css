@@ -11,9 +11,17 @@
 
 
 .equationInput {
-    width: 208px;
-    max-width: 208px;
+    width: 100%;
+    max-width: inherit ;
     height: 50px;
     margin: 1px;
 }
 
+.historyBox {
+    max-height: 400px;
+    overflow: scroll;
+}
+
+.historyNumber {
+    font-size: .75em;
+}

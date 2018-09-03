@@ -4,9 +4,8 @@ import './ButtonLayout.css';
 import InputField from '../InputField/InputField';
 import Calculate from '../../Logic/Calculate/Calculate';
 import HistoryInput from '../HistoryInput/HistoryInput';
-import GetRequest from '../../Logic/Database/GET'
-
-
+// import GetRequest from '../../Logic/Database/GET'
+import axios from 'axios';
 
 // This component will display the buttons on the dom
 
@@ -62,19 +61,39 @@ class ButtonLayout extends Component {
 
     }
 
-    // If the length of the history is greater then 10, it will reverse and clip off the end, then reverse back
-    historyClip = () => {
-        let clippedHistory = this.state.allHistory
-        if(clippedHistory.length > 10) {
-            clippedHistory.reverse();
-            clippedHistory.length  = 10;
-            clippedHistory.reverse();
-            console.log('clip successful');
-            this.setState({
-                allHistory: [clippedHistory],
-            })
-        }
+    componentDidMount() {
+        this.getHistory();
+
     }
+
+    getHistory = () => {
+        axios({
+            method: 'get',
+            url: '/history',
+        }).then((response) => {
+            console.log('all history', response.data);
+            this.setState({
+                allHistory: response.data,
+            })
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
+
+    resetAll = () => {
+        axios({
+            method: 'DELETE',
+            url: '/history',
+        }).then((response) => {
+            console.log('delete', response.data);
+            this.setState({
+                allHistory: [],
+            })
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
+
 
     // Input that will be concatenated
     inputNumberHandler = (input) => {
@@ -90,23 +109,28 @@ class ButtonLayout extends Component {
     inputElseHandler = (input) => {
 
         if (input === '=') {
-
+            // calculates and attempts to make a post request to mongo
             Calculate(this.state.InputField.expression);
 
-            GetRequest();
-
-        } else if(input === 'C') {
             // Will clear the input field
             this.setState({
                 InputField: {
                     expression: [],
                     theAnswer: ``,
-                }})
-        } else if(input === 'R') {
-            // will reset the history
+                }
+            })
+
+            this.getHistory();
+        } else if (input === 'C') {
+            // Will clear the input field
             this.setState({
-                allHistory:[],
-                })
+                InputField: {
+                    expression: [],
+                    theAnswer: ``,
+                }
+            })
+        } else if (input === 'R') {
+            this.resetAll();    
         }
     }
 
@@ -114,11 +138,14 @@ class ButtonLayout extends Component {
         return (
             <div className="row">
 
-                <div className="col">
+                <span className="mr-4">
                     {/* Input field will display based on user input */}
-                    <InputField className="row" expressionData={this.state.InputField} />
+                    
+                    <div className="ButtonLayoutContainer shadow-lg ml-2 mr-2">
+                    <InputField expressionData={this.state.InputField} />
+                    </div>
 
-                    <div className="ButtonLayoutContainer  row">
+                    <div className="ButtonLayoutContainer shadow-lg ml-2 mr-2 p-1 border rounded border-primary row d-flex justify-content-center">
                         {/* Buttons */}
                         {this.state.buttonList.map((button, i) => {
                             // i starts at 0
@@ -126,19 +153,16 @@ class ButtonLayout extends Component {
                         })}
                     </div>
 
-                </div>
+                </span>
 
 
 
-                <div className="col pl-3 pr-3 bg-dark text-muted">
+                <span className="pl-3 pr-3 card border-primary bg-light rounded historyBox">
                     <div className="">
-                    <h3>History:</h3>
-                            {this.state.allHistory.map((entry, i) => {
-                                return (<HistoryInput key={i} data={entry} />)
-                            })}
+                        <HistoryInput history={this.state.allHistory} />
                     </div>
 
-                </div>
+                </span>
 
 
 

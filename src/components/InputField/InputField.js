@@ -8,9 +8,8 @@ class InputField extends Component {
         return (
 
             // Will display the current expression, which will be calculated when submitted
-            <div className="equationInput row bg-dark text-light pl-2 pr-2">
+            <div className="equationInput bg-dark border rounded border-warning text-light p-1">
                 {this.props.expressionData.expression.map((entry, i) => {
-                    console.log();
                     
                     // Formatting for input display, if the entry is a number it will not have spaces, if it is then it will have spaces.
                     let decimal = '.';
