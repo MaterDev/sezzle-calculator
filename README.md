@@ -13,7 +13,7 @@ This is a full-stack calculator.
 * Nodemon
 
 
-##Checkpoints:
+## Checkpoints:
 
 1. [x] Create Boilerplate & Initialize File
 2. [x] Create starter DOM elements (Components)
