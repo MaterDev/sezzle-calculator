@@ -2,15 +2,21 @@
   "name": "sezzle-calculator",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5000",
   "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.3",
     "mathjs": "^5.1.1",
+    "mongoose": "^5.2.12",
+    "nodemon": "^1.18.4",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-scripts": "1.1.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts build && node server/server.js",
+    "client": "react-scripts start",
+    "server": "nodemon  --watch server server/server.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import Buttons from '../Buttons/Buttons';
-import './ButtonLayout.css'
+import './ButtonLayout.css';
 import InputField from '../InputField/InputField';
 import Calculate from '../../Logic/Calculate/Calculate';
-import HistoryInput from '../HistoryInput/HistoryInput'
+import HistoryInput from '../HistoryInput/HistoryInput';
+import PostRequest from '../../Logic/Database/POST';
+import GetRequest from '../../Logic/Database/GET'
 
 
 
@@ -61,11 +63,13 @@ class ButtonLayout extends Component {
 
     }
 
-    // If the length of the history is greater then 10, it will clip off the extra items in the array
+    // If the length of the history is greater then 10, it will reverse and clip off the end, then reverse back
     historyClip = () => {
         let clippedHistory = this.state.allHistory
         if(clippedHistory.length > 10) {
-            clippedHistory.length = 10;
+            clippedHistory.reverse();
+            clippedHistory.length  = 10;
+            clippedHistory.reverse();
             console.log('clip successful');
             this.setState({
                 allHistory: [clippedHistory],
@@ -87,18 +91,29 @@ class ButtonLayout extends Component {
     inputElseHandler = (input) => {
 
         if (input === '=') {
-            this.historyClip();
+
             let answer = Calculate(this.state.InputField.expression)
+
             let newHistory = {
                 expression: this.state.InputField.expression,
                 theAnswer: answer,
             }
+
+            PostRequest(newHistory);
+            GetRequest();
+
+        } else if(input === 'C') {
+            // Will clear the input field
             this.setState({
-                allHistory: [newHistory, ...this.state.allHistory],
-            })
-        } else if(input === '') {
-            console.log('clear the screen');
-            
+                InputField: {
+                    expression: [],
+                    theAnswer: ``,
+                }})
+        } else if(input === 'R') {
+            // will reset the history
+            this.setState({
+                allHistory:[],
+                })
         }
     }
 

@@ -16,10 +16,9 @@ September 1, 2018
 	* [x] Display current userInputArray on dom
 	* [x] Concatenate this array together to generate expression.
 	* [x] Display results on a table (for testing)
-		* [x] Display entires on dom in reverse order
-			* ( while i = 0 ; i < 10, i++ )
-4. [ ] Add functionality to Clear button
+		* [x] History fills from top to bottom
+4. [x] Add functionality to Clear button
 	* Clear should erase the input field
-5. [ ] Add functionality to Reset button
+5. [x] Add functionality to Reset button
 	* Reset should delete all history
 6. [ ] Create validator to prevent faulty entries from appearing in history 
