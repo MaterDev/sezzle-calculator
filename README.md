@@ -1,6 +1,8 @@
 # Sezzle Calculator
 This is a full-stack calculator.
 
+The live version can be used here: <https://radiant-lake-66628.herokuapp.com/>
+
 ## Built With
 * React
 * Node.js
